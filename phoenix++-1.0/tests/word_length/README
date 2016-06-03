@@ -1,0 +1,33 @@
+Phoenix Project
+Wordcount Example Application Readme
+Last revised May 15, 2011
+
+
+1. Application Overview
+-----------------------
+
+The WordLength application counts the frequency of occurence of sizes of words
+in a text document, from 'small' to 'medium' and 'large'.
+
+
+2. Provided Files
+-----------------
+
+word_length.cpp: The application
+Makefile: Compiles the application
+datafiles/*.txt: Sample text files of varying sizes that can be used as 
+                 input to this application (download from the website)
+README: This file
+
+
+3. Running the Application
+--------------------------
+
+Run 'make' to compile the application. 
+
+./word_length <text_file>
+
+runs the application.
+
+
+End File

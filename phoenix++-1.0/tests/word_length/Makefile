@@ -27,28 +27,27 @@
 
 # This Makefile requires GNU make.
 
-HOME = ..
+HOME = ../..
 
 include $(HOME)/Defines.mk
 
+LIBS += -L$(HOME)/$(LIB_DIR) -l$(PHOENIX)
+
+WL_OBJS := word_length.o
+
+PROGS := word_length
+
 .PHONY: default all clean
 
-APPS := \
-        histogram \
-        linear_regression \
-        kmeans \
-				matrix_multiply \
-				pca \
-				string_match \
-        word_count \
-		    word_length \
-#
 default: all
 
-all: 
-	@$(foreach APP, $(APPS), \
-            $(MAKE) -C $(APP) --no-print-directory;)
+all: $(PROGS)
+
+word_length: $(WL_OBJS) $(LIB_DEP)
+	$(CXX) $(CFLAGS) -o $@ $(WL_OBJS) $(LIBS)
+
+%.o: %.cpp
+	$(CXX) $(CFLAGS) -c $< -o $@ -I$(HOME)/$(INC_DIR)
 
 clean:
-	@$(foreach APP, $(APPS), \
-            $(MAKE) -C $(APP) clean --no-print-directory;)
+	rm -f $(PROGS) $(WL_OBJS)
